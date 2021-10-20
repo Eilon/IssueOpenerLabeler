@@ -5,10 +5,14 @@ branding:
   color: green
 inputs:
   repo:
-    description: 'The owner of the repo. Assign from github.repository. Example, "someowner/somerepo".'
+    description: 'The owner of the repo. Assign from github.repository. Example: "someowner/somerepo".'
+    required: true
+  issue:
+    description: 'The issue or PR number that triggered this action. Example: 123.'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
   - ${{ inputs.repo }}
+  - ${{ inputs.issue }}
