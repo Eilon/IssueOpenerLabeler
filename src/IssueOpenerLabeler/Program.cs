@@ -1,30 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-
-if (args.Length != 2)
+if (args.Length != 1)
 {
-    System.Console.WriteLine("ERROR: Expected 2 arguments: [DIR] [REPO/OWNER]");
+    System.Console.WriteLine("ERROR: Expected 1 argument: [REPO/OWNER]");
     return 1;
 }
 
 var dir = "/github/workspace";
-var repoAndOwner = args[1];
+if (!Directory.Exists(dir))
+{
+    var currentDir = Directory.GetCurrentDirectory();
+    Console.WriteLine($"Directory {dir} doesn't exist, changing to {currentDir}.");
+    dir = currentDir;
+}
+var repoAndOwner = args[0];
 
 const string ConfigFileName = "issueopenerlabels.json";
 
 var configFileFullPath = Path.Combine(dir, ConfigFileName);
 
-var fses = Directory.GetFileSystemEntries(dir, "*", SearchOption.AllDirectories);
-foreach (var fse in fses)
-{
-    System.Console.WriteLine($"Found FSE: {fse}");
-}
+Console.WriteLine("Running in repo: " + repoAndOwner);
+Console.WriteLine($"Config data loading from: {configFileFullPath}");
 
-System.Console.WriteLine("Running in repo: " + repoAndOwner);
-//System.Console.WriteLine("Config data:");
-//System.Console.WriteLine(File.ReadAllText(configFileFullPath));
+var configFileJsonContents = File.ReadAllText(configFileFullPath);
+var labelData = JsonSerializer.Deserialize<IDictionary<string, IDictionary<string, string[]>>>(configFileJsonContents, new JsonSerializerOptions() { ReadCommentHandling = JsonCommentHandling.Skip, });
+foreach (var x in labelData!)
+{
+    System.Console.WriteLine(x.Key + ":");
+    foreach (var y in x.Value!)
+    {
+        System.Console.WriteLine("\t" + y.Value + ": " + string.Join(", ", y.Value));
+    }
+}
 
 return 0;

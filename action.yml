@@ -4,9 +4,6 @@ branding:
   icon: tag
   color: green
 inputs:
-  dir:
-    description: 'The root directory'
-    required: true
   repo:
     description: 'The owner of the repo. Assign from github.repository. Example, "someowner/somerepo".'
     required: true
@@ -14,5 +11,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-  - ${{ inputs.dir }}
   - ${{ inputs.repo }}
