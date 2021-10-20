@@ -1,0 +1,29 @@
+name: 'IssueOpenerLabeler'
+description: 'A GitHub action that sets issue/PR labels based on who created it'
+branding:
+  icon: alert-circle
+  color: yellow
+inputs:
+  owner:
+    description: 'The owner of the repo. Assign from github.repository_owner. Example, "dotnet".'
+    required: true
+  name:
+    description: 'The repository name. Example, "samples".'
+    required: true
+  dir:
+    description: 'The root directory'
+    required: false
+    default: '/github/workspace'
+outputs:
+  summary-message:
+    description: 'A detailed summary of all the projects that were flagged.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+  - '-o'
+  - ${{ inputs.owner }}
+  - '-n'
+  - ${{ inputs.name }}
+  - '-d'
+  - ${{ inputs.dir }}
