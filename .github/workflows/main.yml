@@ -11,7 +11,7 @@ jobs:
   label-partner-issues:
     runs-on: ubuntu-latest
 
-    # Checkout the repo into the workspace within the VM
+    # Check out the repo into the workspace within the VM
     steps:
     - uses: actions/checkout@v2
 
