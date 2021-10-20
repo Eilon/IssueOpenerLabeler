@@ -8,7 +8,7 @@ on:
     types: [opened]
 
 jobs:
-  version-sweep:
+  label-partner-issues:
     runs-on: ubuntu-latest
 
     # Checkout the repo into the workspace within the VM
@@ -18,7 +18,7 @@ jobs:
     # Run the labeler
     - name: 'Apply labels to issue/PR based on who opened it'
       id: issue-opener-labeler
-      uses: eilon/IssueOpenerLabeler@v1.0.0-test
+      uses: eilon/IssueOpenerLabeler@v0.0.1-test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
