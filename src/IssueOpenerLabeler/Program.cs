@@ -10,7 +10,7 @@ if (args.Length != 2)
     return 1;
 }
 
-var dir = args[0];
+var dir = "/github/workspace";
 var repoAndOwner = args[1];
 
 const string ConfigFileName = "issueopenerlabels.json";
