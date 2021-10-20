@@ -7,7 +7,6 @@ inputs:
   dir:
     description: 'The root directory'
     required: true
-    default: '/github/workspace'
   repo:
     description: 'The owner of the repo. Assign from github.repository. Example, "someowner/somerepo".'
     required: true
