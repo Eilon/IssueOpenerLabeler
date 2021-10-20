@@ -1,0 +1,25 @@
+name: 'Label partner issues'
+
+# Available triggers: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
+on:
+  pull_request:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  version-sweep:
+    runs-on: ubuntu-latest
+
+    # Checkout the repo into the workspace within the VM
+    steps:
+    - uses: actions/checkout@v2
+
+    # Run the labeler
+    - name: 'Apply labels to issue/PR based on who opened it'
+      id: issue-opener-labeler
+      uses: eilon/IssueOpenerLabeler@v1.0.0-test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        repo: ${{ github.repository }}
