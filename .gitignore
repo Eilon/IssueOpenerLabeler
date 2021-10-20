@@ -351,3 +351,4 @@ src/coreclr/src/System.Private.CoreLib/common
 
 # The debug directory should not be ignored
 !src/coreclr/src/debug
+
