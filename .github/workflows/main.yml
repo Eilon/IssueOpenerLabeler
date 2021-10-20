@@ -23,4 +23,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         repo: ${{ github.repository }}
-        issue: format('{0}{1}', ${{ github.event.issue.number }}, ${{ github.event.number }})
+        issue: ${{ format('{0}{1}', ${{ github.event.issue.number }}, ${{ github.event.number }}) }}
