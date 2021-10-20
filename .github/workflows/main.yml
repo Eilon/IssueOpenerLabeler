@@ -18,7 +18,7 @@ jobs:
     # Run the labeler
     - name: 'Apply labels to issue/PR based on who opened it'
       id: issue-opener-labeler
-      uses: eilon/IssueOpenerLabeler@v0.0.1-test
+      uses: eilon/IssueOpenerLabeler@v0.0.2-test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
