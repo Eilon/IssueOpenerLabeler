@@ -33,7 +33,7 @@ Console.WriteLine("Running in repo: " + ownerAndRepo);
 Console.WriteLine($"Config data loading from: {configFileFullPath}");
 
 var configFileJsonContents = File.ReadAllText(configFileFullPath);
-var labelData = JsonSerializer.Deserialize<IDictionary<string, IDictionary<string, string[]>>>(configFileJsonContents, new JsonSerializerOptions() { ReadCommentHandling = JsonCommentHandling.Skip, });
+var labelData = JsonSerializer.Deserialize<IDictionary<string, IDictionary<string, string[]>>>(configFileJsonContents, new JsonSerializerOptions() { ReadCommentHandling = JsonCommentHandling.Skip, })!;
 
 const string GitHubToken = "GITHUB_TOKEN";
 
