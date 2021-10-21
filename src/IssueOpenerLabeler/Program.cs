@@ -67,7 +67,7 @@ var labelsToApply = labelData["labels"]
 
 if (labelsToApply.Length == 0)
 {
-
+    Console.WriteLine($"No labels to apply!");
 }
 else
 {
