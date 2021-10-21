@@ -8,7 +8,7 @@ using Octokit.Extensions;
 
 if (args.Length != 2)
 {
-    System.Console.WriteLine("ERROR: Expected 1 argument: [REPO/OWNER] [ISSUE_NUMBER]");
+    System.Console.WriteLine("ERROR: Expected 2 arguments: [REPO/OWNER] [ISSUE_NUMBER]");
     return 1;
 }
 
@@ -34,14 +34,6 @@ Console.WriteLine($"Config data loading from: {configFileFullPath}");
 
 var configFileJsonContents = File.ReadAllText(configFileFullPath);
 var labelData = JsonSerializer.Deserialize<IDictionary<string, IDictionary<string, string[]>>>(configFileJsonContents, new JsonSerializerOptions() { ReadCommentHandling = JsonCommentHandling.Skip, });
-foreach (var x in labelData!)
-{
-    System.Console.WriteLine(x.Key + ":");
-    foreach (var y in x.Value!)
-    {
-        System.Console.WriteLine("\t" + y.Value + ": " + string.Join(", ", y.Value));
-    }
-}
 
 const string GitHubToken = "GITHUB_TOKEN";
 
